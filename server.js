@@ -7,17 +7,20 @@ const SERVER_HOST = "localhost"
 
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
-
+app.use(express.static(__dirname));
 
 //http://localhost:3000/
 app.get('/', function (req, res) {
-    res.send("<h1>Home Page</h1>")
+    res.redirect('index.html')
 })
 
-//http://localhost:3000/profile
-app.post('/profile', (req, res) => {
-  console.log(req.body)
-  res.json(req.body)
+app.get('/profile', (req, res) => {
+  const data = {
+        name: "Jasdeep singh",
+        id: "c1111", 
+        email: "jasdeep@gmail.com" 
+    };
+  res.json(data);
 })
 
 //http://localhost:3000/admin
